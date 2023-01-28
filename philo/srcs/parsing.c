@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:03:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/01/28 14:41:06 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/01/28 15:04:56 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	ft_print_error(void)
 int	ft_init_data(t_data *data, int argc, char **argv)
 {
 	data->nb_of_philo = ft_atoi(argv[0]);
+	if (data->nb_of_philo == 0)
+		return (-1);
 	data->time_to_die = ft_atoi(argv[1]);
 	data->time_to_eat = ft_atoi(argv[2]);
 	data->time_to_sleep = ft_atoi(argv[3]);
