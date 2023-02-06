@@ -6,15 +6,15 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 14:00:51 by jbarbate          #+#    #+#              #
-#    Updated: 2023/01/28 14:09:16 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/02/06 11:32:21 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
-SRCS = srcs/main.c srcs/parsing.c srcs/tools.c
+SRCS = srcs/main.c srcs/parsing.c srcs/tools.c srcs/philo.c srcs/exec.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -pthread
 
 .c.o:
 	@${GCC} ${CFLAGS} -c $< -o ${<:.c=.o}
