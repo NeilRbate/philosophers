@@ -6,58 +6,50 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:13:49 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/02/06 11:53:01 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:09:44 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-t_philo	*ft_init_philo(t_data *data, pthread_mutex_t *mutex, int i)
+t_philo	*ft_create_philo(t_data *data, int nb)
 {
 	t_philo	*philo;
 
-	philo = malloc(sizeof(*philo));
+	philo = malloc(sizeof(t_philo));
 	if (!philo)
 		return (NULL);
-	philo->mutex = mutex;
-	philo->data = data;
-	philo->nb = i + 1;
-	philo->right_fork = i + 1;
-	if (i == data->nb_of_philo - 1)
+	pthread_mutex_init(&philo->fork, NULL);
+	philo->nb = nb + 1;
+	philo->nb_of_philo = data->nb_of_philo;
+	philo->time_to_die = data->time_to_die;
+	philo->time_to_eat = data->time_to_eat;
+	philo->time_to_sleep = data->time_to_sleep;
+	philo->optionnal = data->optionnal;
+	if (philo->optionnal > 0)
+		philo->nb_of_meal = data->nb_of_meal;
+	if (nb == 0)
+		philo->left_fork = philo->nb_of_philo;
+	else
+		philo->left_fork = nb - 1;
+	if (nb + 1 == philo->nb_of_philo)
 		philo->right_fork = 1;
-	philo->right_fork = i + 1;
+	else
+		philo->right_fork = nb + 2;
 	return (philo);
 }
 
-int	ft_create_thread(t_data *data, pthread_mutex_t *fork)
+int	ft_init_philo(t_data *data, t_philo **philo)
 {
-	int		i;
-	t_philo	*philo;
+	int	i;
 
 	i = 0;
 	while (i < data->nb_of_philo)
 	{
-		philo = ft_init_philo(data, fork, i);
-		pthread_create(&philo->tid, NULL, ft_philosopher_life, philo);
+		philo[i] = ft_create_philo(data, i);
+		if (!philo[i])
+			return (-1);
 		i++;
 	}
-		pthread_detach(philo->tid);
 	return (0);
-}
-
-pthread_mutex_t	*ft_create_fork(t_data *data)
-{
-	int				i;
-	pthread_mutex_t	*tab;
-
-	tab = malloc(sizeof(pthread_mutex_t) * data->nb_of_philo);
-	if (!tab)
-		return (NULL);
-	i = 0;
-	while (i < data->nb_of_philo)
-	{
-		pthread_mutex_init(&tab[i], NULL);
-		i++;
-	}
-	return (tab);
 }

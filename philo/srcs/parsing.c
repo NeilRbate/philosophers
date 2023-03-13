@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:03:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/02/06 08:26:31 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:59:09 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	ft_init_data(t_data *data, int argc, char **argv)
 	data->time_to_die = ft_atoi(argv[1]);
 	data->time_to_eat = ft_atoi(argv[2]);
 	data->time_to_sleep = ft_atoi(argv[3]);
-	data->nb_of_eat = 0;
 	if (argc == 5)
 	{
 		data->optionnal = 1;
