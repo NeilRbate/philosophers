@@ -6,17 +6,23 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:02:50 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/13 15:04:59 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:11:25 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+/*For printf*/
 # include <stdio.h>
+/*For malloc & cie*/
 # include <stdlib.h>
-# include <stdio.h>
+/*For thread*/
 # include <pthread.h>
+/*For usleep*/
+# include <unistd.h>
+/*For gettimeofday */
+# include <sys/time.h>
 
 typedef struct s_data
 {
@@ -30,23 +36,32 @@ typedef struct s_data
 
 typedef struct	s_philo
 {
-	pthread_t	tid;
+	pthread_t		tid;
 	pthread_mutex_t	fork;
-	int		nb;
-	int		nb_of_philo;
-	int		time_to_die;
-	int		time_to_eat;
-	int		time_to_sleep;
-	int		optionnal;
-	int		nb_of_meal;
-	int		right_fork;
-	int		left_fork;
+	pthread_mutex_t	*print;
+	int				nb;
+	int				life;
+	int				nb_of_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				optionnal;
+	int				nb_of_meal;
+	int				right_fork;
+	int				left_fork;
+	struct timeval	time;
 }		t_philo;
-int	ft_init_philo(t_data *data, t_philo **philo);
-int	ft_strcmp(const char *s1, const char *s2);
-int	ft_atoi(const char *str);
-int	ft_isdigit(int c);
-int	ft_args_ctrl(int argc, char **argv, t_data *data);
+int		ft_init_philo(t_data *data, t_philo **philo, pthread_mutex_t *print);
+int		ft_strcmp(const char *s1, const char *s2);
+int		ft_atoi(const char *str);
+int		ft_isdigit(int c);
+int		ft_args_ctrl(int argc, char **argv, t_data *data);
+int		ft_exec(t_philo **philo);
 size_t	ft_strlen(const char *s);
-
+long long	ft_gettime(t_philo *philo);
+void	ft_print_fork(t_philo *philo);
+void	ft_print_eating(t_philo *philo);
+void	ft_print_sleeping(t_philo *philo);
+void	ft_print_thinking(t_philo *philo);
+void	ft_print_die(t_philo *philo);
 #endif

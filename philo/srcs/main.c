@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:57:52 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/13 15:07:50 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 07:35:01 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 int	main(int argc, char **argv)
 {
 	int	ret;
-	t_data	*data;
-	t_philo	**philo;
+	t_data			*data;
+	t_philo			**philo;
+	pthread_mutex_t	print;
 
 	if (argc < 5 || argc > 7)
 		return (-1);
@@ -27,8 +28,9 @@ int	main(int argc, char **argv)
 	philo = malloc(sizeof(t_philo) * data->nb_of_philo);
 	if (!philo)
 		return (free(data), -1);
-	if (ft_init_philo(data, philo) != 0)
+	pthread_mutex_init(&print, NULL);
+	if (ft_init_philo(data, philo, &print) != 0)
 		return (free(data), -1);
-	printf("philo 1 fork->%d", philo[0]->right_fork);
+	ft_exec(philo);
 	return (0);
 }

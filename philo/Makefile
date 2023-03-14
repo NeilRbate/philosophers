@@ -6,12 +6,18 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 14:00:51 by jbarbate          #+#    #+#              #
-#    Updated: 2023/03/13 13:19:13 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/03/14 09:19:15 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 GCC = gcc
-SRCS = srcs/main.c srcs/parsing.c srcs/tools.c srcs/philo.c srcs/exec.c
+SRCS = srcs/main.c \
+	   srcs/parsing.c \
+	   srcs/tools.c \
+	   srcs/philo.c \
+	   srcs/exec.c \
+	   srcs/time.c \
+	   srcs/print.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo
 CFLAGS = -Wall -Wextra -Werror
