@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 17:16:38 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 18:00:30 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,26 @@
 
 int	ft_usleep(long time)
 {
-	usleep(time * 1000);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
+	usleep(time * 50);
 	return (0);
 }
 
@@ -23,6 +42,7 @@ void	*ft_routine(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo*)p;
+	gettimeofday(&philo->time, NULL);
 	if (philo->nb % 2 == 0)
 		ft_thinking(philo);
 	while (1)
