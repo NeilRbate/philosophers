@@ -6,7 +6,7 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 14:00:51 by jbarbate          #+#    #+#              #
-#    Updated: 2023/03/14 09:19:15 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/03/14 09:39:53 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ SRCS = srcs/main.c \
 	   srcs/philo.c \
 	   srcs/exec.c \
 	   srcs/time.c \
-	   srcs/print.c
+	   srcs/print.c \
+	   srcs/free.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo
 CFLAGS = -Wall -Wextra -Werror

@@ -6,20 +6,29 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 09:21:55 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 10:54:00 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+
+void	ft_start(t_philo *philo)
+{
+
+}
 
 void	*ft_routine(void *p)
 {
 	t_philo	*philo;
 
 	philo = (t_philo*)p;
-	ft_print_fork(philo);
 	usleep(100);
-	philo->life = 0;
+	while (1)
+	{
+		if (philo->life != 1)
+			return (0);
+		ft_start(philo);
+	}
 	return (0);
 }
 
@@ -60,6 +69,7 @@ int	ft_exec(t_philo **philo)
 		i++;
 	}
 	ft_wait(philo, nb);
+	pthread_mutex_destroy(philo[0]->print);
 	usleep(20000);
 	return (0);
 }

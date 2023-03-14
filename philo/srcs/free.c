@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/14 08:10:19 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 10:20:44 by jbarbate         ###   ########.fr       */
+/*   Created: 2023/03/14 09:36:34 by jbarbate          #+#    #+#             */
+/*   Updated: 2023/03/14 09:40:46 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-long long	ft_gettime(t_philo *philo)
+void	ft_free_philo(t_philo **philo)
 {
-	struct timeval	time;
-	long long		ret;
+	int	nb;
 
-	gettimeofday(&time, NULL);
-	ret = ((time.tv_sec * 1000) + (time.tv_usec / 1000))
-		- ((philo->time.tv_sec * 1000) + (philo->time.tv_usec / 1000));
-	return (ret);
+	nb = philo[0]->nb_of_philo - 1;
+	while (nb >= 0)
+	{
+		free(philo[nb]);
+		nb--;
+	}
+	free(philo);
+	philo = NULL;
 }

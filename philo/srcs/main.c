@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:57:52 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 07:35:01 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:45:59 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,7 @@ int	main(int argc, char **argv)
 	if (ft_init_philo(data, philo, &print) != 0)
 		return (free(data), -1);
 	ft_exec(philo);
+	ft_free_philo(philo);
+	free(data);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:02:50 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 09:11:25 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 09:53:02 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,5 @@ void	ft_print_eating(t_philo *philo);
 void	ft_print_sleeping(t_philo *philo);
 void	ft_print_thinking(t_philo *philo);
 void	ft_print_die(t_philo *philo);
+void	ft_free_philo(t_philo **philo);
 #endif
