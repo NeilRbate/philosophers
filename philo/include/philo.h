@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:02:50 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 09:53:02 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 16:47:25 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ typedef struct	s_philo
 	int				time_to_sleep;
 	int				optionnal;
 	int				nb_of_meal;
-	int				right_fork;
-	int				left_fork;
+	pthread_mutex_t			*right_fork;
+	pthread_mutex_t			*left_fork;
 	struct timeval	time;
 }		t_philo;
 int		ft_init_philo(t_data *data, t_philo **philo, pthread_mutex_t *print);
@@ -65,4 +65,8 @@ void	ft_print_sleeping(t_philo *philo);
 void	ft_print_thinking(t_philo *philo);
 void	ft_print_die(t_philo *philo);
 void	ft_free_philo(t_philo **philo);
+int	ft_eat(t_philo *philo);
+int	ft_thinking(t_philo *philo);
+int	ft_sleeping(t_philo *philo);
+int	ft_usleep(long time);
 #endif

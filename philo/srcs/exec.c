@@ -6,15 +6,16 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 10:54:00 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/14 17:16:38 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
-void	ft_start(t_philo *philo)
+int	ft_usleep(long time)
 {
-
+	usleep(time * 1000);
+	return (0);
 }
 
 void	*ft_routine(void *p)
@@ -22,12 +23,16 @@ void	*ft_routine(void *p)
 	t_philo	*philo;
 
 	philo = (t_philo*)p;
-	usleep(100);
+	if (philo->nb % 2 == 0)
+		ft_thinking(philo);
 	while (1)
 	{
 		if (philo->life != 1)
 			return (0);
-		ft_start(philo);
+		ft_eat(philo);
+		ft_sleeping(philo);
+		ft_thinking(philo);
+
 	}
 	return (0);
 }
@@ -39,6 +44,7 @@ void	ft_wait(t_philo **philo, int nb)
 	i = 0;
 	while (1)
 	{
+		ft_usleep(100);
 		if (i == nb)
 			i = 0;
 		if (philo[i]->life == 0)
