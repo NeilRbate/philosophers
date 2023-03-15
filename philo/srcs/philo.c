@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:13:49 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 17:09:32 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:57:51 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ void	ft_init(t_data *data, t_philo *philo, int nb)
 	philo->time_to_eat = data->time_to_eat;
 	philo->time_to_sleep = data->time_to_sleep;
 	philo->optionnal = data->optionnal;
-	if (philo->optionnal > 0)
+	if (philo->optionnal == 1)
 		philo->nb_of_meal = data->nb_of_meal;
 	else
-		philo->nb_of_meal = 2147483640;
-
+		philo->nb_of_meal = 100;
 }
 
 t_philo	*ft_create_philo(t_data *data, int nb, pthread_mutex_t *print)
@@ -36,6 +35,7 @@ t_philo	*ft_create_philo(t_data *data, int nb, pthread_mutex_t *print)
 	if (!philo)
 		return (NULL);
 	pthread_mutex_init(&philo->fork, NULL);
+	pthread_mutex_init(&philo->status, NULL);
 	ft_init(data, philo, nb);
 	philo->print = print;
 	return (philo);

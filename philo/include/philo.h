@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:02:50 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/15 07:37:39 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 12:24:13 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct	s_philo
 	pthread_t	tid;
 	pthread_mutex_t	fork;
 	pthread_mutex_t	*print;
+	pthread_mutex_t	status;
 	int		nb;
 	int		life;
 	int		nb_of_philo;

@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 13:57:52 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 09:45:59 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:30:52 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	main(int argc, char **argv)
 {
-	int	ret;
+	int				ret;
 	t_data			*data;
 	t_philo			**philo;
 	pthread_mutex_t	print;
