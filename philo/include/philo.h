@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/28 14:02:50 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/14 17:44:25 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 07:37:39 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,5 @@ void	ft_free_philo(t_philo **philo);
 int	ft_eat(t_philo *philo);
 int	ft_thinking(t_philo *philo);
 int	ft_sleeping(t_philo *philo);
-int	ft_usleep(long time);
+int	ft_usleep(long time, t_philo *philo);
 #endif

@@ -6,7 +6,7 @@
 #    By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/28 14:00:51 by jbarbate          #+#    #+#              #
-#    Updated: 2023/03/14 17:17:56 by jbarbate         ###   ########.fr        #
+#    Updated: 2023/03/15 09:59:27 by jbarbate         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = srcs/main.c \
 	   srcs/life.c
 OBJS = ${SRCS:.c=.o}
 NAME = philo
-CFLAGS = -Wall -Wextra -Werror -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror
 
 .c.o:
 	@${GCC} ${CFLAGS} -c $< -o ${<:.c=.o}
