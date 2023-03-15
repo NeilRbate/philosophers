@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/15 13:28:57 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:56:22 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ void	ft_wait(t_philo **philo, int nb)
 			j++;
 		if (philo[i]->life == 0)
 		{
-			pthread_mutex_lock(philo[i]->print);
 			i = 0;
 			pthread_mutex_unlock(&philo[i]->status);
 			while (i < nb)

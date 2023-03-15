@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 16:32:41 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/15 13:18:53 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 13:55:37 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,9 @@ int	ft_sleeping(t_philo *philo)
 	{
 		ft_usleep(time - ft_gettime(philo), philo);
 		philo->life = 0;
-		ft_print_die(philo);
 		pthread_mutex_unlock(&philo->status);
+		pthread_mutex_lock(philo->print);
+		printf("%lld %d died\n", ft_gettime(philo), philo->nb);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo->status);
