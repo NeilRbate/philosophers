@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:13:49 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/15 12:57:51 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:36:43 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,25 @@ t_philo	*ft_create_philo(t_data *data, int nb, pthread_mutex_t *print)
 	return (philo);
 }
 
+void	ft_init_fork(t_philo **philo, int nb)
+{	
+	int	i;
+
+	i = 0;
+	while (i < nb)
+	{
+		if (i == 0)
+			philo[i]->left_fork = &philo[nb - 1]->fork;
+		else
+			philo[i]->left_fork = &philo[i - 1]->fork;
+		if (i + 1 == nb)
+			philo[i]->right_fork = &philo[0]->fork;
+		else
+			philo[i]->right_fork = &philo[i + 1]->fork;
+		i++;
+	}
+}
+
 int	ft_init_philo(t_data *data, t_philo **philo, pthread_mutex_t *print)
 {
 	int	i;
@@ -55,18 +74,6 @@ int	ft_init_philo(t_data *data, t_philo **philo, pthread_mutex_t *print)
 			return (-1);
 			i++;
 	}
-	i = 0;
-	while (i < nb)
-	{
-		if (i == 0)
-			philo[i]->left_fork = &philo[nb - 1]->fork;
-		else
-			philo[i]->left_fork = &philo[i - 1]->fork;
-		if (i + 1 == nb)
-			philo[i]->right_fork = &philo[0]->fork;
-		else
-			philo[i]->right_fork = &philo[i + 1]->fork;
-		i++;
-	}
+	ft_init_fork(philo, nb);
 	return (0);
 }

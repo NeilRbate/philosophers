@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/15 13:56:22 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/15 15:58:50 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	*ft_routine(void *p)
 		else
 		{
 			pthread_mutex_unlock(&philo->status);
-			while(1)
-			{}
+			while(1){};
 		}
 		usleep(100);
 		if (ft_sleeping(philo) != 0)
@@ -90,14 +89,16 @@ void	ft_wait(t_philo **philo, int nb)
 
 int	ft_exec(t_philo **philo)
 {
-	int	nb;
-	int	i;
+	int		nb;
+	int		i;
+	struct timeval	time;
 
 	nb = philo[0]->nb_of_philo;
 	i = 0;
+	gettimeofday(&time, NULL);
 	while (i < nb)
 	{
-		gettimeofday(&philo[i]->time, NULL);
+		philo[i]->time = time;
 		pthread_create(&philo[i]->tid, NULL, ft_routine, philo[i]);
 		usleep(150);
 		pthread_detach(philo[i]->tid);
