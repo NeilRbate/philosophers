@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/17 11:07:39 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:27:58 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	*ft_routine(void *p)
 		usleep(150);
 	while (1)
 	{
-		pthread_mutex_lock(&philo->status);
+		if (pthread_mutex_lock(&philo->status) != 0)
+			return (0);
 		if (philo->life != 1)
 			return (0);
 		if (philo->nb_of_meal > 0)
