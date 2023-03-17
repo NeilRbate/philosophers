@@ -6,7 +6,7 @@
 /*   By: jbarbate <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 08:46:53 by jbarbate          #+#    #+#             */
-/*   Updated: 2023/03/16 09:59:57 by jbarbate         ###   ########.fr       */
+/*   Updated: 2023/03/17 11:07:39 by jbarbate         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	*ft_routine(void *p)
 		usleep(150);
 	while (1)
 	{
+		pthread_mutex_lock(&philo->status);
 		if (philo->life != 1)
 			return (0);
-		pthread_mutex_lock(&philo->status);
 		if (philo->nb_of_meal > 0)
 		{
 			pthread_mutex_unlock(&philo->status);
@@ -59,19 +59,25 @@ int	ft_isalleat(t_philo **philo, int j, int nb)
 
 int	ft_check(t_philo **philo, int *j, int *i, int nb)
 {
+	long long	time;
+
 	pthread_mutex_lock(&philo[*i]->status);
+	time = ft_gettime(philo[*i]);
 	if (philo[*i]->nb_of_meal > 0)
 		*j += 1;
+	if (time - philo[*i]->last_meal >= philo[*i]->time_to_die)
+	{
+		pthread_mutex_lock(philo[*i]->print);
+		philo[*i]->life = 0;
+		printf("%lld %d died\n", ft_gettime(philo[*i]), philo[*i]->nb);
+	}
 	if (philo[*i]->life == 0)
 	{
 		pthread_mutex_destroy(philo[*i]->print);
 		*i = 0;
 		pthread_mutex_unlock(&philo[*i]->status);
 		while (*i < nb)
-		{
-			pthread_detach(philo[*i]->tid);
-			*i += 1;
-		}
+			pthread_detach(philo[*i++]->tid);
 		return (1);
 	}
 	pthread_mutex_unlock(&philo[*i]->status);
